@@ -1,6 +1,15 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SYSTEMINFO_DIRECTIVES } from './system/index';
+import { SERVICE_CONFIG, IServiceConfig } from './service.config';
+
+export const DefaultServiceConfig: IServiceConfig = {
+  systemInfoEndpoint: "/api/system"
+};
+
+export interface HarborModuleConfig {
+  config?: Provider
+}
 
 @NgModule({
   imports: [
@@ -11,17 +20,21 @@ import { SYSTEMINFO_DIRECTIVES } from './system/index';
 })
 
 export class HarborLibraryModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(config: HarborModuleConfig = {}): ModuleWithProviders {
     return {
       ngModule: HarborLibraryModule,
-      providers: []
+      providers: [
+        config.config || { provide: SERVICE_CONFIG, useValue: DefaultServiceConfig }
+      ]
     };
   }
 
-  static forChild(): ModuleWithProviders {
+  static forChild(config: HarborModuleConfig = {}): ModuleWithProviders {
     return {
       ngModule: HarborLibraryModule,
-      providers: []
+      providers: [
+        config.config || { provide: SERVICE_CONFIG, useValue: DefaultServiceConfig }
+      ]
     };
   }
 }

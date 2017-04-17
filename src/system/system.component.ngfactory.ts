@@ -6,73 +6,65 @@
  /* tslint:disable */
 
 import * as import0 from './system.component';
-import * as import1 from '@angular/core/src/change_detection/change_detection_util';
-import * as import2 from '@angular/core/src/linker/view';
+import * as import1 from '@angular/core/src/linker/view';
+import * as import2 from '@angular/core/src/render/api';
 import * as import3 from '@angular/core/src/linker/view_utils';
-import * as import4 from '@angular/core/src/render/api';
-import * as import5 from '@angular/core/src/metadata/view';
-import * as import6 from './providers/system-info.service';
-import * as import7 from '@angular/core/src/linker/view_type';
-import * as import8 from '@angular/core/src/change_detection/constants';
-import * as import9 from '@angular/core/src/linker/component_factory';
-import * as import10 from '@angular/http/src/http';
+import * as import4 from '@angular/core/src/metadata/view';
+import * as import5 from './providers/system-info.service';
+import * as import6 from '@angular/core/src/linker/view_type';
+import * as import7 from '@angular/core/src/change_detection/constants';
+import * as import8 from '@angular/core/src/linker/component_factory';
+import * as import9 from '@angular/http/src/http';
+import * as import10 from '../service.config';
+import * as import11 from '@angular/core/src/change_detection/change_detection_util';
 export class Wrapper_SystemComponent {
   /*private*/ _eventHandler:Function;
   context:import0.SystemComponent;
   /*private*/ _changed:boolean;
-  /*private*/ _expr_0:any;
   constructor(p0:any) {
     this._changed = false;
     this.context = new import0.SystemComponent(p0);
-    this._expr_0 = import1.UNINITIALIZED;
   }
-  ngOnDetach(view:import2.AppView<any>,componentView:import2.AppView<any>,el:any):void {
+  ngOnDetach(view:import1.AppView<any>,componentView:import1.AppView<any>,el:any):void {
   }
   ngOnDestroy():void {
   }
-  check_infoEndpoint(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
-    if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_0,currValue))) {
-      this._changed = true;
-      this.context.infoEndpoint = currValue;
-      this._expr_0 = currValue;
-    }
-  }
-  ngDoCheck(view:import2.AppView<any>,el:any,throwOnChange:boolean):boolean {
+  ngDoCheck(view:import1.AppView<any>,el:any,throwOnChange:boolean):boolean {
     var changed:any = this._changed;
     this._changed = false;
     if (!throwOnChange) { if ((view.numberOfChecks === 0)) { this.context.ngOnInit(); } }
     return changed;
   }
-  checkHost(view:import2.AppView<any>,componentView:import2.AppView<any>,el:any,throwOnChange:boolean):void {
+  checkHost(view:import1.AppView<any>,componentView:import1.AppView<any>,el:any,throwOnChange:boolean):void {
   }
   handleEvent(eventName:string,$event:any):boolean {
     var result:boolean = true;
     return result;
   }
-  subscribe(view:import2.AppView<any>,_eventHandler:any):void {
+  subscribe(view:import1.AppView<any>,_eventHandler:any):void {
     this._eventHandler = _eventHandler;
   }
 }
-var renderType_SystemComponent_Host:import4.RenderComponentType = import3.createRenderComponentType('',0,import5.ViewEncapsulation.None,([] as any[]),{});
-class View_SystemComponent_Host0 extends import2.AppView<any> {
+var renderType_SystemComponent_Host:import2.RenderComponentType = import3.createRenderComponentType('',0,import4.ViewEncapsulation.None,([] as any[]),{});
+class View_SystemComponent_Host0 extends import1.AppView<any> {
   _el_0:any;
-  compView_0:import2.AppView<import0.SystemComponent>;
-  _SystemInfoService_0_3:import6.SystemInfoService;
+  compView_0:import1.AppView<import0.SystemComponent>;
+  _SystemInfoService_0_3:import5.SystemInfoService;
   _SystemComponent_0_4:Wrapper_SystemComponent;
-  constructor(viewUtils:import3.ViewUtils,parentView:import2.AppView<any>,parentIndex:number,parentElement:any) {
-    super(View_SystemComponent_Host0,renderType_SystemComponent_Host,import7.ViewType.HOST,viewUtils,parentView,parentIndex,parentElement,import8.ChangeDetectorStatus.CheckAlways);
+  constructor(viewUtils:import3.ViewUtils,parentView:import1.AppView<any>,parentIndex:number,parentElement:any) {
+    super(View_SystemComponent_Host0,renderType_SystemComponent_Host,import6.ViewType.HOST,viewUtils,parentView,parentIndex,parentElement,import7.ChangeDetectorStatus.CheckAlways);
   }
-  createInternal(rootSelector:string):import9.ComponentRef<any> {
+  createInternal(rootSelector:string):import8.ComponentRef<any> {
     this._el_0 = import3.selectOrCreateRenderHostElement(this.renderer,'hbr-system',import3.EMPTY_INLINE_ARRAY,rootSelector,(null as any));
     this.compView_0 = new View_SystemComponent0(this.viewUtils,this,0,this._el_0);
-    this._SystemInfoService_0_3 = new import6.SystemInfoService(this.injectorGet(import10.Http,this.parentIndex));
+    this._SystemInfoService_0_3 = new import5.SystemInfoService(this.injectorGet(import9.Http,this.parentIndex),this.injectorGet(import10.SERVICE_CONFIG,this.parentIndex));
     this._SystemComponent_0_4 = new Wrapper_SystemComponent(this._SystemInfoService_0_3);
     this.compView_0.create(this._SystemComponent_0_4.context);
     this.init(this._el_0,((<any>this.renderer).directRenderer? (null as any): [this._el_0]),(null as any));
-    return new import9.ComponentRef_<any>(0,this,this._el_0,this._SystemComponent_0_4.context);
+    return new import8.ComponentRef_<any>(0,this,this._el_0,this._SystemComponent_0_4.context);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
-    if (((token === import6.SystemInfoService) && (0 === requestNodeIndex))) { return this._SystemInfoService_0_3; }
+    if (((token === import5.SystemInfoService) && (0 === requestNodeIndex))) { return this._SystemInfoService_0_3; }
     if (((token === import0.SystemComponent) && (0 === requestNodeIndex))) { return this._SystemComponent_0_4.context; }
     return notFoundResult;
   }
@@ -87,20 +79,20 @@ class View_SystemComponent_Host0 extends import2.AppView<any> {
     cb(this._el_0,ctx);
   }
 }
-export const SystemComponentNgFactory:import9.ComponentFactory<import0.SystemComponent> = new import9.ComponentFactory<import0.SystemComponent>('hbr-system',View_SystemComponent_Host0,import0.SystemComponent);
+export const SystemComponentNgFactory:import8.ComponentFactory<import0.SystemComponent> = new import8.ComponentFactory<import0.SystemComponent>('hbr-system',View_SystemComponent_Host0,import0.SystemComponent);
 const styles_SystemComponent:any[] = ([] as any[]);
-var renderType_SystemComponent:import4.RenderComponentType = import3.createRenderComponentType('',0,import5.ViewEncapsulation.None,styles_SystemComponent,{});
-export class View_SystemComponent0 extends import2.AppView<import0.SystemComponent> {
+var renderType_SystemComponent:import2.RenderComponentType = import3.createRenderComponentType('',0,import4.ViewEncapsulation.None,styles_SystemComponent,{});
+export class View_SystemComponent0 extends import1.AppView<import0.SystemComponent> {
   _text_0:any;
   _el_1:any;
   _text_2:any;
   _text_3:any;
   /*private*/ _expr_4:any;
-  constructor(viewUtils:import3.ViewUtils,parentView:import2.AppView<any>,parentIndex:number,parentElement:any) {
-    super(View_SystemComponent0,renderType_SystemComponent,import7.ViewType.COMPONENT,viewUtils,parentView,parentIndex,parentElement,import8.ChangeDetectorStatus.CheckAlways);
-    this._expr_4 = import1.UNINITIALIZED;
+  constructor(viewUtils:import3.ViewUtils,parentView:import1.AppView<any>,parentIndex:number,parentElement:any) {
+    super(View_SystemComponent0,renderType_SystemComponent,import6.ViewType.COMPONENT,viewUtils,parentView,parentIndex,parentElement,import7.ChangeDetectorStatus.CheckAlways);
+    this._expr_4 = import11.UNINITIALIZED;
   }
-  createInternal(rootSelector:string):import9.ComponentRef<any> {
+  createInternal(rootSelector:string):import8.ComponentRef<any> {
     const parentRenderNode:any = this.renderer.createViewRoot(this.parentElement);
     this._text_0 = this.renderer.createText(parentRenderNode,'\n    ',(null as any));
     this._el_1 = import3.createRenderElement(this.renderer,parentRenderNode,'pre',import3.EMPTY_INLINE_ARRAY,(null as any));

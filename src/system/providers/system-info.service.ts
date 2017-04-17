@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+
+import { SERVICE_CONFIG, IServiceConfig } from '../../service.config';
 
 @Injectable()
 export class SystemInfoService {
@@ -10,14 +12,16 @@ export class SystemInfoService {
     })
   });
 
-  constructor(private http: Http) { }
+  constructor(
+    private http: Http,
+    @Inject(SERVICE_CONFIG) private config: IServiceConfig) { }
 
-  getSystemInfo(url: string): Promise<any> {
-    if(!url || url.trim() === "") {
+  getSystemInfo(): Promise<any> {
+    if(this.config.systemInfoEndpoint.trim() === "") {
       return Promise.reject("500: Internal error");
     }
 
-    return this.http.get(url, this.httpOptions).toPromise()
+    return this.http.get(this.config.systemInfoEndpoint, this.httpOptions).toPromise()
     .then(response => response.json())
     .catch(error => console.error("Get systeminfo error: ", error));
   }
