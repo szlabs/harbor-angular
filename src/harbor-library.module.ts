@@ -4,7 +4,12 @@ import { SYSTEMINFO_DIRECTIVES } from './system/index';
 import { SERVICE_CONFIG, IServiceConfig } from './service.config';
 
 export const DefaultServiceConfig: IServiceConfig = {
-  systemInfoEndpoint: "/api/system"
+  systemInfoEndpoint: "/api/system",
+  repositoryBaseEndpoint: "",
+  logBaseEndpoint: "",
+  targetBaseEndpoint: "",
+  replicationRuleEndpoint:"",
+  replicationJobEndpoint: ""
 };
 
 export interface HarborModuleConfig {
